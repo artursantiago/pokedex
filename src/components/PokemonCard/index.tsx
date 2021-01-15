@@ -4,7 +4,7 @@ import favoriteIcon from '../../assets/heart.svg';
 import favoriteIconShape from '../../assets/heart2.svg';
 import './style.css';
 import { pokemonTypeColors } from '../global';
-import { pad } from '../../services/utils';
+import { pad, capitalizeFirstLetter } from '../../services/utils';
 
 interface Pokemon {
   id: number,
@@ -20,11 +20,7 @@ interface Props {
 const PokemonCard: React.FC<Props> = ({ pokemon }) => {
 
   const pokemonBackgroundColor = (pokemonType: string, colorType = 'medium') => {
-    console.log(pokemonType, colorType);
-    
     const pokemonColors = Object.entries(pokemonTypeColors).filter(teste => teste[0] === pokemonType)[0][1];
-    console.log(pokemonColors);
-    
     return {
       backgroundColor: colorType === 'medium' ? pokemonColors.medium : pokemonColors.light,
     }
@@ -44,7 +40,7 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
       </div>
       <div className="card-info">
         <span className="card-number">#{pad(pokemon.id, 3)}</span>
-        <h4 className="card-name">{pokemon.name}</h4>
+        <h4 className="card-name">{capitalizeFirstLetter(pokemon.name)}</h4>
         <ul className="card-types">
           {pokemon.types.map(type => {
             return  <li key={type} className="type" style={pokemonBackgroundColor(type)}>{type.toUpperCase()}</li>

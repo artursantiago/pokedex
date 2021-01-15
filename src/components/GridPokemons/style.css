@@ -1,5 +1,5 @@
 .grid-pokemons {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 10%;
+  gap: 5%;
 }

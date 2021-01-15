@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-// import { getPokemonsDynamically } from '../../services/pokemon';
+import { getPokemonsDynamically } from '../../services/pokemon';
 import './style.css'
 import Header from '../../components/Header';
 import Search from '../../components/Search';
-import PokemonCard from '../../components/PokemonCard';
 import GridPokemons from '../../components/GridPokemons';
 
 interface Pokemon {
   id: number,
-  // generation?: string,
   name: string,
   imageUrl: string,
   types: string[]
@@ -18,12 +16,21 @@ interface Pokemon {
 const Dashboard: React.FC = () => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
+  useEffect(() => {
+    async function loadPokemons(limit: number, offset?: number) {
+      const newPokemons =  await getPokemonsDynamically(limit, offset);
+      setPokemons([...pokemons, ...newPokemons]);
+    }
+    loadPokemons(20);
+  }, [])
+
+
   return (
     <>
       <Header />
       <main>
         <Search />
-        <GridPokemons />
+        <GridPokemons pokemons={pokemons} />
       </main>
     </>
   );
