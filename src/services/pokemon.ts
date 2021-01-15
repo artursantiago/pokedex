@@ -1,7 +1,6 @@
 import { getPokemons, getPokemonByNameOrId} from '../api/apiCalls';
 import { baseImageUrl } from '../api';
 import { pad } from './utils';
-import PokemonCard from '../pages/PokemonCard';
 
 interface Pokemon {
   id: number,
