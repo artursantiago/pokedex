@@ -3,3 +3,13 @@ main {
   width: 80%;
   margin: 3rem auto;
 }
+
+.pokeball {
+  position: fixed;
+  z-index: -1;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-height: 80vh;
+  opacity: .3;
+}

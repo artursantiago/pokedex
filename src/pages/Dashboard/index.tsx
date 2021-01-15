@@ -5,6 +5,7 @@ import './style.css'
 import Header from '../../components/Header';
 import Search from '../../components/Search';
 import GridPokemons from '../../components/GridPokemons';
+import pokeball from '../../assets/pokeball.svg'
 
 interface Pokemon {
   id: number,
@@ -28,10 +29,13 @@ const Dashboard: React.FC = () => {
   return (
     <>
       <Header />
-      <main>
-        <Search />
-        <GridPokemons pokemons={pokemons} />
-      </main>
+      <div className="main-wrapper">
+        <main>
+          <Search />
+          <GridPokemons pokemons={pokemons} />
+        </main>
+        <img className="pokeball" src={pokeball} alt=""/>
+      </div>
     </>
   );
 }
