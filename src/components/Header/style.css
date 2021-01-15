@@ -1,0 +1,17 @@
+header {
+  background: red;
+  min-height: 10vh;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokedex img {
+  margin-right: 2rem;
+}
+
+.pokedex img,
+.favorites img {
+  cursor: pointer;
+}
