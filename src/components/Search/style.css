@@ -20,7 +20,7 @@ form {
   color: rgb(138,138,138);
 }
 
-.input-button {
+.btn-search {
   flex: 1 1 16rem;
   border: none;
   border-radius: 1rem;
@@ -31,4 +31,9 @@ form {
   font-size: 1.8rem;
   font-weight: 700;
   cursor: pointer;
+  transition: background-color .3s ease;
+}
+
+.btn-search:focus {
+  background-color: #b12f12;
 }

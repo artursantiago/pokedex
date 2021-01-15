@@ -12,6 +12,12 @@ header {
 
 .pokedex img {
   margin-right: 2rem;
+  transition: all .4s ease;
+  transform-origin: center;
+}
+
+.pokedex img:hover {
+  transform: rotate(180deg);
 }
 
 .pokedex img,
