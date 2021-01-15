@@ -2,7 +2,7 @@ import React from 'react';
 
 import './style.css';
 import pokedexIcon from '../../assets/pokeball-icon.png';
-import favoriteIcon from '../../assets/heart-white.svg';
+import favoriteIcon from '../../assets/heart.svg';
 
 const Header: React.FC = () => {
   return (
