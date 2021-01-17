@@ -2,7 +2,7 @@ import React from 'react';
 
 import './style.css'
 import PokemonCard from '../PokemonCard';
-import { Pokemon } from '../../store/actions';
+import { Pokemon } from '../../store/types';
 
 interface GridPokemonsProps {
   pokemons: Pokemon[],

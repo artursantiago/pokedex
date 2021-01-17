@@ -1,43 +1,44 @@
 import { 
   HandleFavoritePokemonAction, 
   SetFavoritePokemonsAction,
-  FavoritePokemonsActionTypes } from '../actions';
-import { PokedexState } from '../';
+  FavoritePokemonsActionTypes } from '../types';
+import { FavoritePokemonsState } from '../types';
 
-const initialState: PokedexState = {
+const initialState: FavoritePokemonsState = {
   favoritePokemons: [],
 }
 
-export const favoritePokemonReducer = (state = initialState, action: FavoritePokemonsActionTypes): PokedexState => {
+export const favoritePokemonReducer = (state = initialState, action: FavoritePokemonsActionTypes): FavoritePokemonsState => {
   switch(action.type) {
     case "HANDLE_FAVORITE_POKEMON": {
       return handleFavoritePokemon(state, action);
     }
     case "SET_FAVORITE_POKEMONS":
       return setFavoritePokemons(state, action);
-      default: 
+    default: 
       return state
   }
 }
 
-const handleFavoritePokemon = (state = initialState, action: HandleFavoritePokemonAction): PokedexState => {
+const handleFavoritePokemon = (state = initialState, action: HandleFavoritePokemonAction): FavoritePokemonsState => {
   const favPokemonIndex = state.favoritePokemons.findIndex(pokemon => pokemon.id === action.payload.id);
-  console.log(favPokemonIndex);
   
-  if (favPokemonIndex != -1) {
-  console.log(1);
+  if (favPokemonIndex !== -1) {
     return {
+      ...state,
       favoritePokemons: state.favoritePokemons.filter(pokemon => pokemon.id !== action.payload.id)
     };
   } 
-  console.log(2);
   
   return {
+    ...state,
     favoritePokemons: [...state.favoritePokemons, action.payload]
   }
 }
 
-const setFavoritePokemons = (state = initialState, action: SetFavoritePokemonsAction): PokedexState => {
+const setFavoritePokemons = (state = initialState, action: SetFavoritePokemonsAction): FavoritePokemonsState => {
   state.favoritePokemons = action.payload;
-  return state;
+  return {
+    favoritePokemons: action.payload
+  };
 }

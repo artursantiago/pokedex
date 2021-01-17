@@ -1,11 +1,6 @@
-import { createStore, Store } from 'redux';
+import { createStore } from 'redux';
 
-import { Pokemon } from './actions';
 import rootReducer from './reducers';
-
-export interface PokedexState {
-  favoritePokemons: Pokemon[],
-}
 
 const store = createStore(rootReducer);
 

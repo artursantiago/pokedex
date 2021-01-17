@@ -6,8 +6,8 @@ import favoriteIcon from '../../assets/heart.svg';
 import favoriteIconShape from '../../assets/heart2.svg';
 import { pokemonTypeColors } from '../global';
 import { pad, capitalizeFirstLetter } from '../../services/utils';
-import { Pokemon } from '../../store/actions';
-import { handleFavoritePokemon } from '../../store/actions';
+import { Pokemon } from '../../store/types';
+import { handleFavoritePokemon } from '../../store/actions/favoritePokemonsActions';
 import { AppState } from '../../store';
 
 interface PokemonCardProps {

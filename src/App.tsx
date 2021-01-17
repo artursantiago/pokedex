@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './global.css'
 import Routes from './routes';
-import { setFavoritePokemons } from './store/actions';
+import { setFavoritePokemons } from './store/actions/favoritePokemonsActions';
 import { AppState } from './store';
 
 const App: React.FC = () => {
@@ -18,6 +18,7 @@ const App: React.FC = () => {
     if (favoritePokemonsLocalStorage) {
       dispatch(setFavoritePokemons(JSON.parse(favoritePokemonsLocalStorage)));
     }
+    
   }, []);
 
   useEffect(() => {

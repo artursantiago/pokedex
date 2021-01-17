@@ -1,7 +1,7 @@
 import { getPokemons, getPokemonByNameOrId} from '../api/apiCalls';
 import { baseImageUrl } from '../api';
 import { pad } from './utils';
-import { Pokemon } from '../store/actions';
+import { Pokemon } from '../store/types';
 
 interface PokemonInitialData {
   name: string,
@@ -45,4 +45,20 @@ export const getPokemonsDynamically = async (limit: number, offset?: number) => 
   const pokemonsDetail: Pokemon[] = await getPokemonsFormatted(pokemonsNameList);
 
   return pokemonsDetail;
+}
+
+export const getSpecificPokemon = async (query: string) => {
+  try {
+    const response = await getPokemonByNameOrId(query);
+    const pokeDetailData = response.data;
+    return {
+      id: pokeDetailData.id,
+      name: pokeDetailData.name,
+      types: pokeDetailData.types.map( (typeElement: initialTypeFormat) => typeElement.type.name),
+      imageUrl: baseImageUrl + pad(pokeDetailData.id, 3) + '.png',
+    };
+  } catch (error) {
+    return undefined;
+  }
+
 }

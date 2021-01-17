@@ -4,23 +4,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import './style.css'
 import pokeball from '../../assets/pokeball.svg'
 import Header from '../../components/Header';
-import Search from '../../components/Search';
 import GridPokemons from '../../components/GridPokemons';
-import { getPokemonsDynamically } from '../../services/pokemon';
-import { Pokemon } from '../../store/actions';
-import { setFavoritePokemons } from '../../store/actions';
+import { getPokemonsDynamically, getSpecificPokemon } from '../../services/pokemon';
+import { Pokemon } from '../../store/types';
 import { AppState } from '../../store';
+import { setPokemons } from '../../store/actions/pokedexActions';
+
 
 const Dashboard: React.FC = () => {
-  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
-
-  // const { favoritePokemons } = useSelector((state: AppState) => state.favoritePokemonReducer);
-  // const dispatch = useDispatch();
+  const {pokemons} = useSelector((state: AppState) => state.pokedexReducer);
+  const dispatch = useDispatch();
   
   useEffect(() => {
     async function loadPokemons(limit: number, offset?: number) {
       const newPokemons =  await getPokemonsDynamically(limit, offset);
-      setPokemons(newPokemons);
+      dispatch(setPokemons(newPokemons));
     }
     loadPokemons(20);
   }, [])
@@ -30,7 +28,7 @@ const Dashboard: React.FC = () => {
       <Header />
       <div className="main-wrapper">
         <main>
-          <Search />
+          <h2>Pokedex</h2>
           <GridPokemons pokemons={pokemons} />
         </main>
         <img className="pokeball" src={pokeball} alt=""/>

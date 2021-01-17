@@ -17,7 +17,7 @@ const FavoritePokemons: React.FC = () => {
       <Header />
       <div className="main-wrapper">
         <main>
-          <Search />
+          <h2>Pokedex</h2>
           <GridPokemons pokemons={favoritePokemons}/>
         </main>
         <img className="pokeball" src={pokeball} alt=""/>
