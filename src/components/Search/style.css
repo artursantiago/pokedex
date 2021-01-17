@@ -18,6 +18,7 @@ form {
   border: none;
   background-color: rgb(222,222,222);
   color: rgb(138,138,138);
+  margin-right: 2rem;
 }
 
 .btn-search {
@@ -25,7 +26,6 @@ form {
   border: none;
   border-radius: 1rem;
   background-color: #e3350d;
-  margin: 0 2rem;
   padding: 1rem 1.5rem;
   color: white;
   font-size: 1.8rem;
@@ -36,4 +36,10 @@ form {
 
 .btn-search:focus {
   background-color: #b12f12;
+}
+
+@media (max-width: 1208px) {
+  .btn-search {
+    margin-top: 1.5rem;
+  }
 }
