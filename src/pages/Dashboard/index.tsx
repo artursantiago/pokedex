@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './style.css'
 import pokeball from '../../assets/pokeball.svg'
 import Header from '../../components/Header';
+import Search from '../../components/Search';
 import GridPokemons from '../../components/GridPokemons';
 import { getPokemonsDynamically, getSpecificPokemon } from '../../services/pokemon';
 import { Pokemon } from '../../store/types';
@@ -29,6 +30,7 @@ const Dashboard: React.FC = () => {
       <div className="main-wrapper">
         <main>
           <h2>Pokedex</h2>
+          <Search />
           <GridPokemons pokemons={pokemons} />
         </main>
         <img className="pokeball" src={pokeball} alt=""/>
