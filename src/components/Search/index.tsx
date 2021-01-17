@@ -5,7 +5,12 @@ import './style.css'
 import { getSpecificPokemon, getPokemonsDynamically } from '../../services/pokemon';
 import { setPokemons } from '../../store/actions/pokedexActions';
 
-const PokemonCard: React.FC = () => {
+interface SearchProps {
+  loading: boolean,
+  setLoading: Function
+}
+
+const Search: React.FC<SearchProps> = ({loading, setLoading}) => {
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -15,22 +20,26 @@ const PokemonCard: React.FC = () => {
 
   const handleSearchSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
     // Reset Pokemon List
     if (!searchQuery) {
       const newPokemons = await getPokemonsDynamically(20);
       dispatch(setPokemons(newPokemons));
+      setLoading(false);
       return;
     }
 
     const pokemonFounded = await getSpecificPokemon(searchQuery.toLowerCase());
     if (pokemonFounded) {
       dispatch(setPokemons([pokemonFounded]));
-      return;
+    } else {
+      // Pokemon Not Found
+      dispatch(setPokemons([]));
     }
 
-    // Pokemon Not Found
-    dispatch(setPokemons([]));
+    setLoading(false);
+    return;
   }
 
   return (
@@ -38,11 +47,11 @@ const PokemonCard: React.FC = () => {
       <div className="form-wrapper">
         <form onSubmit={handleSearchSubmit}>
           <input onChange={handleQueryChange} className="input-search" type="text" placeholder="Search for a pokémon..." />
-          <button className="btn-search" type="submit">Search</button>
+          <button className="btn-search" type="submit" disabled={loading}>Search</button>
         </form>
       </div>
     </div>
     );
 }
 
-export default PokemonCard;
+export default Search;
