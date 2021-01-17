@@ -1,14 +1,7 @@
 import { getPokemons, getPokemonByNameOrId} from '../api/apiCalls';
 import { baseImageUrl } from '../api';
 import { pad } from './utils';
-
-interface Pokemon {
-  id: number,
-  // generation?: string,
-  name: string,
-  imageUrl: string,
-  types: string[]
-}
+import { Pokemon } from '../store/actions';
 
 interface PokemonInitialData {
   name: string,

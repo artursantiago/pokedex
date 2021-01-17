@@ -1,20 +1,14 @@
 import React from 'react';
 
-import PokemonCard from '../PokemonCard';
 import './style.css'
+import PokemonCard from '../PokemonCard';
+import { Pokemon } from '../../store/actions';
 
-interface Pokemon {
-  id: number,
-  name: string,
-  imageUrl: string,
-  types: string[]
-}
-
-interface Props {
+interface GridPokemonsProps {
   pokemons: Pokemon[],
 }
 
-const GridPokemons: React.FC<Props> = ({pokemons}) => {
+const GridPokemons: React.FC<GridPokemonsProps> = ({pokemons}) => {
   const pokemon = {
     id: 1,
     name: 'Bulbasur',

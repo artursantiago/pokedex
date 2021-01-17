@@ -1,23 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
+import './style.css';
 import favoriteIcon from '../../assets/heart.svg';
 import favoriteIconShape from '../../assets/heart2.svg';
-import './style.css';
 import { pokemonTypeColors } from '../global';
 import { pad, capitalizeFirstLetter } from '../../services/utils';
+import { Pokemon } from '../../store/actions';
+import { handleFavoritePokemon } from '../../store/actions';
+import { AppState } from '../../store';
 
-interface Pokemon {
-  id: number,
-  name: string,
-  imageUrl: string,
-  types: string[]
-}
-
-interface Props {
+interface PokemonCardProps {
   pokemon: Pokemon,
 }
 
-const PokemonCard: React.FC<Props> = ({ pokemon }) => {
+const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
+
+  const { favoritePokemons } = useSelector((state: AppState)  => state.favoritePokemonReducer);
+  const dispatch = useDispatch();
+
+  const handleFavorite = (pokemon: Pokemon) => {
+    dispatch(handleFavoritePokemon(pokemon));
+    console.log(favoritePokemons);
+  }
 
   const pokemonBackgroundColor = (pokemonType: string, colorType = 'medium') => {
     const pokemonColors = Object.entries(pokemonTypeColors).filter(teste => teste[0] === pokemonType)[0][1];
@@ -33,8 +38,13 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
           <img src={pokemon.imageUrl} alt=""/>
         </div>
         <div className="card-actions" style={pokemonBackgroundColor(pokemon.types[0], 'light')}>
-          <button className="btn-favorite">
-            <img src={favoriteIconShape} alt=""/>
+          <button className="btn-favorite"
+            onClick={() => handleFavorite(pokemon)}
+            title={!!favoritePokemons[pokemon.id.toString()] ? 
+              `Add ${capitalizeFirstLetter(pokemon.name)} to the favorite list.`
+              : `Remove ${capitalizeFirstLetter(pokemon.name)} from the favorite list.`}
+          >
+            <img src={!!favoritePokemons[pokemon.id.toString()] ? favoriteIcon : favoriteIconShape} alt=""/>
           </button>
         </div>
       </div>
