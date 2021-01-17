@@ -19,9 +19,12 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
   const { favoritePokemons } = useSelector((state: AppState)  => state.favoritePokemonReducer);
   const dispatch = useDispatch();
 
+  const isAFavoritePokemon = (id: number) => {
+    return !!favoritePokemons.find(pokemon => pokemon.id === id);
+  }
+
   const handleFavorite = (pokemon: Pokemon) => {
     dispatch(handleFavoritePokemon(pokemon));
-    console.log(favoritePokemons);
   }
 
   const pokemonBackgroundColor = (pokemonType: string, colorType = 'medium') => {
@@ -40,11 +43,11 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
         <div className="card-actions" style={pokemonBackgroundColor(pokemon.types[0], 'light')}>
           <button className="btn-favorite"
             onClick={() => handleFavorite(pokemon)}
-            title={!!favoritePokemons[pokemon.id.toString()] ? 
-              `Add ${capitalizeFirstLetter(pokemon.name)} to the favorite list.`
-              : `Remove ${capitalizeFirstLetter(pokemon.name)} from the favorite list.`}
+            title={isAFavoritePokemon(pokemon.id) ? 
+              `Remove ${capitalizeFirstLetter(pokemon.name)} from the favorite list.`
+              : `Add ${capitalizeFirstLetter(pokemon.name)} to the favorite list.`}
           >
-            <img src={!!favoritePokemons[pokemon.id.toString()] ? favoriteIcon : favoriteIconShape} alt=""/>
+            <img src={isAFavoritePokemon(pokemon.id) ? favoriteIcon : favoriteIconShape} alt=""/>
           </button>
         </div>
       </div>

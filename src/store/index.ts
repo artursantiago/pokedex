@@ -4,7 +4,7 @@ import { Pokemon } from './actions';
 import rootReducer from './reducers';
 
 export interface PokedexState {
-  favoritePokemons: {[id: string]: Pokemon}
+  favoritePokemons: Pokemon[],
 }
 
 const store = createStore(rootReducer);

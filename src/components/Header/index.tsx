@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './style.css';
 import pokeball from '../../assets/pokeball.svg';
@@ -8,10 +9,14 @@ const Header: React.FC = () => {
   return (
     <header>
       <div className="pokedex">
-        <img src={pokeball} height="36" alt=""/>
+        <Link to="/">
+          <img src={pokeball} height="36" alt=""/>
+        </Link>
       </div>
       <div className="favorites">
-        <img src={favoriteIcon} height="36" alt=""/>
+        <Link to="/favorites">
+          <img src={favoriteIcon} height="36" alt=""/>
+        </Link>
       </div>
     </header>
   );

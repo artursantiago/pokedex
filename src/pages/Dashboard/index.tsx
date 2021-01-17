@@ -14,26 +14,16 @@ import { AppState } from '../../store';
 const Dashboard: React.FC = () => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
-  const { favoritePokemons } = useSelector((state: AppState) => state.favoritePokemonReducer);
-  const dispatch = useDispatch();
+  // const { favoritePokemons } = useSelector((state: AppState) => state.favoritePokemonReducer);
+  // const dispatch = useDispatch();
   
   useEffect(() => {
-    const favoritePokemonsLocalStorage = localStorage.getItem('favorite-pokemons-list');
-    
-    if (favoritePokemonsLocalStorage) {
-      dispatch(setFavoritePokemons(JSON.parse(favoritePokemonsLocalStorage)));
-    }
-
     async function loadPokemons(limit: number, offset?: number) {
       const newPokemons =  await getPokemonsDynamically(limit, offset);
       setPokemons(newPokemons);
     }
     loadPokemons(20);
   }, [])
-  
-  useEffect(() => {
-    localStorage.setItem('favorite-pokemons-list', JSON.stringify(favoritePokemons));
-  }, [favoritePokemons]);
 
   return (
     <>

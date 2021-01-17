@@ -5,7 +5,7 @@ import {
 import { PokedexState } from '../';
 
 const initialState: PokedexState = {
-  favoritePokemons: {},
+  favoritePokemons: [],
 }
 
 export const favoritePokemonReducer = (state = initialState, action: FavoritePokemonsActionTypes): PokedexState => {
@@ -21,13 +21,20 @@ export const favoritePokemonReducer = (state = initialState, action: FavoritePok
 }
 
 const handleFavoritePokemon = (state = initialState, action: HandleFavoritePokemonAction): PokedexState => {
-  const favPokemon = state.favoritePokemons[action.payload.id.toString()];
-  if (favPokemon) {
-    delete state.favoritePokemons[action.payload.id.toString()]
-  } else {
-    state.favoritePokemons[action.payload.id.toString()] = action.payload;
+  const favPokemonIndex = state.favoritePokemons.findIndex(pokemon => pokemon.id === action.payload.id);
+  console.log(favPokemonIndex);
+  
+  if (favPokemonIndex != -1) {
+  console.log(1);
+    return {
+      favoritePokemons: state.favoritePokemons.filter(pokemon => pokemon.id !== action.payload.id)
+    };
+  } 
+  console.log(2);
+  
+  return {
+    favoritePokemons: [...state.favoritePokemons, action.payload]
   }
-  return state
 }
 
 const setFavoritePokemons = (state = initialState, action: SetFavoritePokemonsAction): PokedexState => {

@@ -1,5 +1,3 @@
-import { PokedexState } from '../';
-
 export const HANDLE_FAVORITE_POKEMON = 'HANDLE_FAVORITE_POKEMON';
 export const SET_FAVORITE_POKEMONS = 'SET_FAVORITE_POKEMONS';
 
@@ -17,7 +15,7 @@ export type HandleFavoritePokemonAction = {
 
 export type SetFavoritePokemonsAction = {
   type: typeof SET_FAVORITE_POKEMONS,
-  payload: {[id: string]: Pokemon}
+  payload: Pokemon[]
 }
 
 export type FavoritePokemonsActionTypes = HandleFavoritePokemonAction | SetFavoritePokemonsAction;
@@ -27,7 +25,7 @@ export const handleFavoritePokemon = (pokemon: Pokemon): FavoritePokemonsActionT
   payload: pokemon,
 });
 
-export const setFavoritePokemons = (favoritePokemons: {[id: string]: Pokemon}): FavoritePokemonsActionTypes => ({
+export const setFavoritePokemons = (favoritePokemons: Pokemon[]): FavoritePokemonsActionTypes => ({
   type: SET_FAVORITE_POKEMONS,
   payload: favoritePokemons,
 });
