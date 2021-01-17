@@ -8,7 +8,7 @@ import Search from '../../components/Search';
 import Loading from '../../components/Loading';
 import NotFound from '../../components/NotFound';
 import GridPokemons from '../../components/GridPokemons';
-import { getPokemonsDynamically, getSpecificPokemon } from '../../services/pokemon';
+import { getPokemonsDynamically } from '../../services/pokemon';
 import { AppState } from '../../store';
 import { setPokemons } from '../../store/actions/pokedexActions';
 

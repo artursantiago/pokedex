@@ -38,7 +38,6 @@ const getPokemonsFormatted = async (pokemonsNameList: string[]) => {
 export const getPokemonsDynamically = async (limit: number, offset?: number) => {
 
   const responseInitialPokemons = await getPokemons(limit, offset);
-  // Verificar se está vazio
 
   const pokemonsNameList =  getPokemonNames(responseInitialPokemons.data.results);
 
