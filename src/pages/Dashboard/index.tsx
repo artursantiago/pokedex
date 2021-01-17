@@ -6,6 +6,7 @@ import pokeball from '../../assets/pokeball.svg'
 import Header from '../../components/Header';
 import Search from '../../components/Search';
 import Loading from '../../components/Loading';
+import NotFound from '../../components/NotFound';
 import GridPokemons from '../../components/GridPokemons';
 import { getPokemonsDynamically, getSpecificPokemon } from '../../services/pokemon';
 import { AppState } from '../../store';
@@ -38,7 +39,9 @@ const Dashboard: React.FC = () => {
           {
             loading ?
             <Loading />
-            : <GridPokemons pokemons={pokemons} />
+            : (pokemons.length === 0 ?
+              <NotFound />
+              : <GridPokemons pokemons={pokemons} />)
           }
         </main>
         <img className="pokeball" src={pokeball} alt=""/>

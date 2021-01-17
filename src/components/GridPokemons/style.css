@@ -1,4 +1,5 @@
 .grid-pokemons {
+  padding: 2rem 0rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
   gap: 4rem;
